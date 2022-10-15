@@ -19,7 +19,7 @@ public class Principal {
 
 
 
-
+    /*
         //PARA PROBAR CONEXION A BD
         Persona p = new Persona("12345678", "Cecilia", "Fernandez");
         String insert = "Insert into Personas(Dni,Nombre,Apellido) values ('"+p.getDni()+"','"+p.getNombre()+"','"+p.getApellido()+"')";
@@ -47,6 +47,7 @@ public class Principal {
         }
             catch(Exception e) {
                     e.printStackTrace();
-            }
-        }
+        }*/
+
+    }
 }
