@@ -1,39 +1,63 @@
 package presentacion.vista;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.Color;
+import javax.swing.JLabel;
 
 public class VentanaPrincipal extends JFrame {
-    private JPanel contentPanel;
 
-    public VentanaPrincipal(){
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
-        contentPanel = new JPanel();
+	private JMenuBar menuBar;
+	private JMenu mnPersonas;
+	private JMenuItem menuEliminar;
+	private JMenuItem menuAgregar;
+	
+	public VentanaPrincipal() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 783, 494);
+		
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		mnPersonas = new JMenu("Personas");
+		menuBar.add(mnPersonas);
+		
+		menuAgregar = new JMenuItem("Agregar");
+		mnPersonas.add(menuAgregar);
+		
+		menuEliminar = new JMenuItem("Eliminar");
+		mnPersonas.add(menuEliminar);
+	}
 
-        JMenuBar menuBar = new JMenuBar();
-        setJMenuBar(menuBar);
-        JMenu menu = new JMenu("Persona");
-        menuBar.add(menu);
-        JMenuItem menuItemAgregar = new JMenuItem("Agregar");
-        menu.add(menuItemAgregar);
-        JMenuItem menuItemModificar = new JMenuItem("Modificar");
-        menu.add(menuItemModificar);
-        JMenuItem menuItemEliminar = new JMenuItem("Eliminar");
-        menu.add(menuItemEliminar);
-        JMenuItem menuItemListar = new JMenuItem("Listar");
-        menu.add(menuItemListar);
+	public JMenu getMnPersonas() {
+		return mnPersonas;
+	}
 
-        
-        
-        
-        
-/*        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPanel.setLayout(new BorderLayout(0,0));
-        setContentPane(contentPanel);
-        contentPanel.setLayout(null);*/
+	public void setMnPersonas(JMenu mnPersonas) {
+		this.mnPersonas = mnPersonas;
+	}
 
-    }
+	public JMenuItem getMenuEliminar() {
+		return menuEliminar;
+	}
 
+	public void setMenuEliminar(JMenuItem menuEliminar) {
+		this.menuEliminar = menuEliminar;
+	}
+
+	public JMenuItem getMenuAgregar() {
+		return menuAgregar;
+	}
+
+	public void setMenuAgregar(JMenuItem menuAgregar) {
+		this.menuAgregar = menuAgregar;
+	}
+	
 }
