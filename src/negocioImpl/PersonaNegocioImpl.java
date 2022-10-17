@@ -40,7 +40,10 @@ PersonaDao pdao = new PersonaDaoImpl();
 
 	@Override
 	public List<Persona> readAll() {
-		return pdao.readAll();
+		
+		List<Persona> lPersona;
+		lPersona = pdao.readAll();
+		return lPersona;
 	}
 
 }

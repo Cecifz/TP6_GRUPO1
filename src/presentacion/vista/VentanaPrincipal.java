@@ -18,6 +18,8 @@ public class VentanaPrincipal extends JFrame {
 	private JMenu mnPersonas;
 	private JMenuItem menuEliminar;
 	private JMenuItem menuAgregar;
+	private JMenuItem menuModificar;
+	private JMenuItem menuListar;
 	
 	public VentanaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,8 +34,14 @@ public class VentanaPrincipal extends JFrame {
 		menuAgregar = new JMenuItem("Agregar");
 		mnPersonas.add(menuAgregar);
 		
+		menuModificar = new JMenuItem("Modificar");
+		mnPersonas.add(menuModificar);
+		
 		menuEliminar = new JMenuItem("Eliminar");
 		mnPersonas.add(menuEliminar);
+		
+		menuListar = new JMenuItem("Listar");
+		mnPersonas.add(menuListar );
 	}
 
 	public JMenu getMnPersonas() {
@@ -60,4 +68,21 @@ public class VentanaPrincipal extends JFrame {
 		this.menuAgregar = menuAgregar;
 	}
 	
+	
+	public JMenuItem getMenuModificar() {
+		return menuModificar;
+	}
+
+	public void setMenuModificar(JMenuItem menuModificar) {
+		this.menuModificar = menuModificar;
+		
+	}
+	public JMenuItem getMenuListar() {
+		return menuListar;
+	}
+
+	public void setMenuListar(JMenuItem menuListar) {
+		this.menuListar= menuListar;
+		
+	}
 }

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import entidad.Persona;
 import negocio.PersonaNegocio;
 import presentacion.vista.PanelEliminarPersonas;
+import presentacion.vista.PanelModificarPersonas;
 import presentacion.vista.VentanaPrincipal;
 import presentacion.vista.PanelAgregarPersonas;
 
@@ -18,6 +19,7 @@ public class Controlador implements ActionListener {
 	private VentanaPrincipal ventanaPrincipal;
 	private PanelAgregarPersonas pnlIngresoPersonas;
 	private PanelEliminarPersonas pnlEliminarPersonas;
+	private PanelModificarPersonas pnlModificarPersonas;
 	private PersonaNegocio pNeg;
 	private ArrayList<Persona> personasEnTabla;
 	
@@ -31,13 +33,13 @@ public class Controlador implements ActionListener {
 		//Instancio los paneles
 		this.pnlIngresoPersonas = new PanelAgregarPersonas();
 		this.pnlEliminarPersonas = new PanelEliminarPersonas();
-		
+		this.pnlModificarPersonas = new PanelModificarPersonas();
 		//Enlazo todos los eventos
 		
 		//Eventos menu del Frame principal llamado Ventana
 		this.ventanaPrincipal.getMenuAgregar().addActionListener(a->EventoClickMenu_AbrirPanel_AgregarPersona(a));
 		this.ventanaPrincipal.getMenuEliminar().addActionListener(a->EventoClickMenu_AbrirPanel_EliminarPersona(a));
-
+		this.ventanaPrincipal.getMenuModificar().addActionListener(a->EventoClickMenu_AbrirPanel_ModificarPersona(a));
 		//Eventos PanelAgregarPersonas
 		 this.pnlIngresoPersonas.getBtnAgregar().addActionListener(a->EventoClickBoton_AgregarPesona_PanelAgregarPersonas(a));
 		
@@ -59,6 +61,15 @@ public class Controlador implements ActionListener {
 	{		
 		ventanaPrincipal.getContentPane().removeAll();
 		ventanaPrincipal.getContentPane().add(pnlEliminarPersonas);
+		ventanaPrincipal.getContentPane().repaint();
+		ventanaPrincipal.getContentPane().revalidate();
+	}
+	
+	//EventoClickMenu abrir PanelModificarPersonas
+	public void EventoClickMenu_AbrirPanel_ModificarPersona(ActionEvent a) 
+	{
+		ventanaPrincipal.getContentPane().removeAll();
+		ventanaPrincipal.getContentPane().add(pnlModificarPersonas);
 		ventanaPrincipal.getContentPane().repaint();
 		ventanaPrincipal.getContentPane().revalidate();
 	}
