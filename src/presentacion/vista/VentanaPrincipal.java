@@ -25,6 +25,10 @@ public class VentanaPrincipal extends JFrame {
         JMenuItem menuItemListar = new JMenuItem("Listar");
         menu.add(menuItemListar);
 
+        
+        
+        
+        
 /*        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPanel.setLayout(new BorderLayout(0,0));
         setContentPane(contentPanel);
