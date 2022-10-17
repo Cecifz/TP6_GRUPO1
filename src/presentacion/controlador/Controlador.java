@@ -44,7 +44,8 @@ public class Controlador implements ActionListener {
 		 this.pnlIngresoPersonas.getBtnAgregar().addActionListener(a->EventoClickBoton_AgregarPesona_PanelAgregarPersonas(a));
 		
 		//Eventos PanelEliminarPersonas
-	
+		///Eventos Modificar Personas
+		 this.pnlModificarPersonas.getBtnModificar().addActionListener(a->EventoClickBoton_ModificarPesona_PanelModificarPersonas(a));
 		}
 	
 	//EventoClickMenu abrir PanelAgregarPersonas
@@ -55,6 +56,23 @@ public class Controlador implements ActionListener {
 		ventanaPrincipal.getContentPane().repaint();
 		ventanaPrincipal.getContentPane().revalidate();
 	}
+	
+	//EventoClickMenu abrir PanelModificarPersonas
+	public void EventoClickBoton_ModificarPesona_PanelModificarPersonas(ActionEvent a)
+	{
+		try {
+			String cadena[] = this.pnlModificarPersonas.getList().getSelectedValue().toString().split("-");
+			System.out.println(cadena[0]+cadena[1]+cadena[2]);
+			Persona persona = new Persona(cadena[1].trim(),cadena[2].trim(),cadena[0].trim());
+			this.pnlModificarPersonas.setTxtApellido(persona.getApellido());
+			this.pnlModificarPersonas.setTxtNombre(persona.getNombre());
+			this.pnlModificarPersonas.settxtDni(persona.getDni());
+			}
+			catch(Exception e) {
+				this.pnlModificarPersonas.mostrarMensaje("Error al querer mostrar elemento seleccionado");
+			}
+	}
+	
 	
 	//EventoClickMenu abrir PanelEliminarPersonas
 	public void EventoClickMenu_AbrirPanel_EliminarPersona(ActionEvent a)
@@ -70,8 +88,10 @@ public class Controlador implements ActionListener {
 	{
 		ventanaPrincipal.getContentPane().removeAll();
 		ventanaPrincipal.getContentPane().add(pnlModificarPersonas);
+		refrescarTabla();
 		ventanaPrincipal.getContentPane().repaint();
 		ventanaPrincipal.getContentPane().revalidate();
+		
 	}
 
 	//EventoClickBoton agregar persona en PanelAgregarPersonas
@@ -101,13 +121,12 @@ public class Controlador implements ActionListener {
 
 
 	
+	private void refrescarTabla()
+	{
+		this.personasEnTabla = (ArrayList<Persona>) pNeg.readAll();
+		this.pnlModificarPersonas.llenarTabla(this.personasEnTabla);
 	
-	
-		
-	
-
-
-
+	}
 	
 	public void inicializar()
 	{

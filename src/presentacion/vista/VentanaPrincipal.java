@@ -36,6 +36,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		menuModificar = new JMenuItem("Modificar");
 		mnPersonas.add(menuModificar);
+		menuModificar.addActionListener(null);
 		
 		menuEliminar = new JMenuItem("Eliminar");
 		mnPersonas.add(menuEliminar);
@@ -75,6 +76,7 @@ public class VentanaPrincipal extends JFrame {
 
 	public void setMenuModificar(JMenuItem menuModificar) {
 		this.menuModificar = menuModificar;
+		
 		
 	}
 	public JMenuItem getMenuListar() {

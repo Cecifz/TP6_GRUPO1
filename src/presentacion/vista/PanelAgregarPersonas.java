@@ -21,11 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class PanelAgregarPersonas extends JPanel {
-	
-	private DefaultTableModel modelPersonas;
-	private String[] nombreColumnas = {"Nombre","Apellido","DNI"};
 	private JTextField txtNombre;
-	///private JTextField txtApellido;
 	
 
 
@@ -84,9 +80,6 @@ public class PanelAgregarPersonas extends JPanel {
 	
 		this.setBounds(100, 100, 514, 455);
 		this.setLayout(null);
-		
-		modelPersonas = new DefaultTableModel(null,nombreColumnas);
-		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBounds(15, 37, 438, 118);
@@ -142,4 +135,6 @@ public class PanelAgregarPersonas extends JPanel {
 	{
 		JOptionPane.showMessageDialog(null, mensaje);
 	}
+	
+
 }
