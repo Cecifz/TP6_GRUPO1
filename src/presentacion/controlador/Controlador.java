@@ -11,6 +11,7 @@ import javax.swing.event.ListSelectionEvent;
 import entidad.Persona;
 import negocio.PersonaNegocio;
 import presentacion.vista.PanelEliminarPersonas;
+import presentacion.vista.PanelListarPersonas;
 import presentacion.vista.PanelModificarPersonas;
 import presentacion.vista.VentanaPrincipal;
 import presentacion.vista.PanelAgregarPersonas;
@@ -22,6 +23,7 @@ public class Controlador implements ActionListener {
 	private PanelAgregarPersonas pnlIngresoPersonas;
 	private PanelEliminarPersonas pnlEliminarPersonas;
 	private PanelModificarPersonas pnlModificarPersonas;
+	private PanelListarPersonas pnlListarPersonas;
 	private PersonaNegocio pNeg;
 	private ArrayList<Persona> personasEnTabla;
 	
@@ -36,12 +38,14 @@ public class Controlador implements ActionListener {
 		this.pnlIngresoPersonas = new PanelAgregarPersonas();
 		this.pnlEliminarPersonas = new PanelEliminarPersonas();
 		this.pnlModificarPersonas = new PanelModificarPersonas();
+		this.pnlListarPersonas = new PanelListarPersonas();
 		//Enlazo todos los eventos
 		
 		//Eventos menu del Frame principal llamado Ventana
 		this.ventanaPrincipal.getMenuAgregar().addActionListener(a->EventoClickMenu_AbrirPanel_AgregarPersona(a));
 		this.ventanaPrincipal.getMenuEliminar().addActionListener(a->EventoClickMenu_AbrirPanel_EliminarPersona(a));
 		this.ventanaPrincipal.getMenuModificar().addActionListener(a->EventoClickMenu_AbrirPanel_ModificarPersona(a));
+		this.ventanaPrincipal.getMenuListar().addActionListener(a->EventoClickMenu_AbrirPanel_ListarPersona(a));
 		//Eventos PanelAgregarPersonas
 		 this.pnlIngresoPersonas.getBtnAgregar().addActionListener(a->EventoClickBoton_AgregarPesona_PanelAgregarPersonas(a));
 		
@@ -54,6 +58,17 @@ public class Controlador implements ActionListener {
 		 this.pnlModificarPersonas.getList().addListSelectionListener(a->EventoClickList_ModificarPesona_PanelModificarPersonas(a));
 		 
 		}
+	
+	
+	
+	public void  EventoClickMenu_AbrirPanel_ListarPersona(ActionEvent a)
+	{
+		ventanaPrincipal.getContentPane().removeAll();
+		ventanaPrincipal.getContentPane().add(pnlListarPersonas);
+		refrescarTabla();
+		ventanaPrincipal.getContentPane().repaint();
+		ventanaPrincipal.getContentPane().revalidate();
+	}
 	
 	//EventoClickMenu abrir PanelAgregarPersonas
 	public void  EventoClickMenu_AbrirPanel_AgregarPersona(ActionEvent a)
@@ -225,6 +240,7 @@ public class Controlador implements ActionListener {
 		this.personasEnTabla = (ArrayList<Persona>) pNeg.readAll();
 		this.pnlModificarPersonas.llenarTabla(this.personasEnTabla);
 		this.pnlEliminarPersonas.llenarTabla(this.personasEnTabla);
+		this.pnlListarPersonas.llenarTabla(this.personasEnTabla);
 	
 	}
 	
