@@ -139,6 +139,7 @@ public class PanelModificarPersonas extends JPanel{
 	
 	public void llenarTabla(List<Persona> personasEnTabla)
 	{
+		modelPersonas.clear();
 		for (Persona p : personasEnTabla)
 			modelPersonas.addElement(p);
 	}

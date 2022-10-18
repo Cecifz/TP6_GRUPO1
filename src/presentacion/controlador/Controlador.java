@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
 
 import entidad.Persona;
 import negocio.PersonaNegocio;
@@ -46,6 +47,7 @@ public class Controlador implements ActionListener {
 		//Eventos PanelEliminarPersonas
 		///Eventos Modificar Personas
 		 this.pnlModificarPersonas.getBtnModificar().addActionListener(a->EventoClickBoton_ModificarPesona_PanelModificarPersonas(a));
+		 this.pnlModificarPersonas.getList().addListSelectionListener(a->EventoClickList_ModificarPesona_PanelModificarPersonas(a));
 		}
 	
 	//EventoClickMenu abrir PanelAgregarPersonas
@@ -61,18 +63,48 @@ public class Controlador implements ActionListener {
 	public void EventoClickBoton_ModificarPesona_PanelModificarPersonas(ActionEvent a)
 	{
 		try {
-			String cadena[] = this.pnlModificarPersonas.getList().getSelectedValue().toString().split("-");
-			System.out.println(cadena[0]+cadena[1]+cadena[2]);
-			Persona persona = new Persona(cadena[1].trim(),cadena[2].trim(),cadena[0].trim());
-			this.pnlModificarPersonas.setTxtApellido(persona.getApellido());
-			this.pnlModificarPersonas.setTxtNombre(persona.getNombre());
-			this.pnlModificarPersonas.settxtDni(persona.getDni());
+			String nombre = this.pnlModificarPersonas.getTxtNombre().getText();
+			String apellido = this.pnlModificarPersonas.getTxtApellido().getText();
+			String dni = this.pnlModificarPersonas.getTxtDni().getText();
+			Persona nuevaPersona = new Persona(dni, nombre,apellido);
+			boolean estado = pNeg.update(nuevaPersona);
+			String mensaje;
+			if(estado==true)
+			{
+				mensaje="Persona modificada con exito";
+			}
+			else
+				mensaje="Persona no modificada";
+			
+			this.pnlModificarPersonas.mostrarMensaje(mensaje);
+		
 			}
 			catch(Exception e) {
-				this.pnlModificarPersonas.mostrarMensaje("Error al querer mostrar elemento seleccionado");
+				this.pnlModificarPersonas.mostrarMensaje("Error al querer Modificar elemento seleccionado");
 			}
+		this.pnlModificarPersonas.setTxtNombre("");
+		this.pnlModificarPersonas.setTxtApellido("");
+		this.pnlModificarPersonas.settxtDni("");
+		refrescarTabla();
 	}
-	
+	///Evento Seleccionar Persona
+	public void EventoClickList_ModificarPesona_PanelModificarPersonas(ListSelectionEvent a)
+	{
+		if(!this.pnlModificarPersonas.getList().isSelectionEmpty())
+		{
+			try {
+				String cadena[] = this.pnlModificarPersonas.getList().getSelectedValue().toString().split("-");
+				Persona persona = new Persona(cadena[2].trim(),cadena[0].trim(),cadena[1].trim());
+				this.pnlModificarPersonas.setTxtApellido(persona.getApellido());
+				this.pnlModificarPersonas.setTxtNombre(persona.getNombre());
+				this.pnlModificarPersonas.settxtDni(persona.getDni());
+				}
+				catch(Exception e) {
+					this.pnlModificarPersonas.mostrarMensaje("Error al querer mostrar elemento seleccionado");
+				}
+		}
+		
+	}
 	
 	//EventoClickMenu abrir PanelEliminarPersonas
 	public void EventoClickMenu_AbrirPanel_EliminarPersona(ActionEvent a)

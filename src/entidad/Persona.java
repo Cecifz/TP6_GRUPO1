@@ -7,16 +7,12 @@ public class Persona {
 
     public Persona() {    }
 
-    public Persona(String nombre, String apellido,String dni) {
-        this.dni = dni;
+    public Persona(String dni, String nombre, String apellido) {
         this.nombre = nombre;
         this.apellido = apellido;
+        this.dni = dni;
     }
-    public Persona(Persona p) {
-        this.dni = p.getDni();
-        this.nombre = p.getNombre();
-        this.apellido = p.getApellido();
-    }
+
     public String getDni() {
         return dni;
     }
@@ -46,4 +42,8 @@ public class Persona {
        // return "Nombre: " + nombre + ", Apellido: "+ apellido + ", DNI: " + dni;
     	return   nombre + " - "+ apellido + " - " + dni;
     }
+    public String toString2() {
+      return "Nombre: " + nombre + ", Apellido: "+ apellido + ", DNI: " + dni;
+     //	return   nombre + " - "+ apellido + " - " + dni;
+     }
 }

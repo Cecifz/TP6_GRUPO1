@@ -21,7 +21,18 @@ PersonaDao pdao = new PersonaDaoImpl();
 		}
 		return estado;
 	}
-
+	
+	@Override
+	public boolean update(Persona persona_a_modificar) {
+		
+		boolean estado=false;
+		if(persona_a_modificar.getNombre().trim().length()>0 && persona_a_modificar.getDni().trim().length()>0  && persona_a_modificar.getApellido().trim().length()>0)
+		{
+			
+			estado=pdao.update(persona_a_modificar);
+		}
+		return estado;
+	}
 	@Override
 	public boolean delete(Persona persona_a_eliminar) {
 		boolean estado=false;
