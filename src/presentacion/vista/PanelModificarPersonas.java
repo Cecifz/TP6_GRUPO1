@@ -31,7 +31,7 @@ public class PanelModificarPersonas extends JPanel{
 	private DefaultListModel <Persona>modelPersonas;
 	
 	
-	JList list;
+	private JList list;
 
 	private JScrollPane scrollPane;
 	public PanelModificarPersonas() {

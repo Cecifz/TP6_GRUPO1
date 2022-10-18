@@ -45,9 +45,13 @@ public class Controlador implements ActionListener {
 		 this.pnlIngresoPersonas.getBtnAgregar().addActionListener(a->EventoClickBoton_AgregarPesona_PanelAgregarPersonas(a));
 		
 		//Eventos PanelEliminarPersonas
+		 
+		 this.pnlEliminarPersonas.getList().addListSelectionListener(a->EventoClickList_EliminarPesona_PanelEliminarPersonas(a));
+		 this.pnlEliminarPersonas.getBtnBorrar().addActionListener(a->EventoClickBoton_EliminarPesona_PanelEliminarPersonas(a));
 		///Eventos Modificar Personas
 		 this.pnlModificarPersonas.getBtnModificar().addActionListener(a->EventoClickBoton_ModificarPesona_PanelModificarPersonas(a));
 		 this.pnlModificarPersonas.getList().addListSelectionListener(a->EventoClickList_ModificarPesona_PanelModificarPersonas(a));
+		 
 		}
 	
 	//EventoClickMenu abrir PanelAgregarPersonas
@@ -87,6 +91,49 @@ public class Controlador implements ActionListener {
 		this.pnlModificarPersonas.settxtDni("");
 		refrescarTabla();
 	}
+	
+	public void EventoClickBoton_EliminarPesona_PanelEliminarPersonas(ActionEvent a)
+	{
+		if(!this.pnlEliminarPersonas.getList().isSelectionEmpty())
+		try {
+			String cadena[] = this.pnlEliminarPersonas.getList().getSelectedValue().toString().split("-");
+			Persona persona = new Persona(cadena[2].trim(),cadena[0].trim(),cadena[1].trim());
+			
+			boolean estado = pNeg.delete(persona);
+			String mensaje;
+			if(estado==true)
+			{
+				mensaje="Persona eliminada con exito";
+			}
+			else
+				mensaje="Persona no eliminada";
+			
+			this.pnlEliminarPersonas.mostrarMensaje(mensaje);
+		
+			}
+			catch(Exception e) {
+				this.pnlEliminarPersonas.mostrarMensaje("Error al querer eliminar elemento seleccionado");
+			}
+		refrescarTabla();
+	}
+	
+	///Evento Seleccionar Persona
+	public void EventoClickList_EliminarPesona_PanelEliminarPersonas(ListSelectionEvent a)
+	{
+		if(!this.pnlEliminarPersonas.getList().isSelectionEmpty())
+		{
+			
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	///Evento Seleccionar Persona
 	public void EventoClickList_ModificarPesona_PanelModificarPersonas(ListSelectionEvent a)
 	{
@@ -111,6 +158,7 @@ public class Controlador implements ActionListener {
 	{		
 		ventanaPrincipal.getContentPane().removeAll();
 		ventanaPrincipal.getContentPane().add(pnlEliminarPersonas);
+		refrescarTabla();
 		ventanaPrincipal.getContentPane().repaint();
 		ventanaPrincipal.getContentPane().revalidate();
 	}
@@ -157,6 +205,7 @@ public class Controlador implements ActionListener {
 	{
 		this.personasEnTabla = (ArrayList<Persona>) pNeg.readAll();
 		this.pnlModificarPersonas.llenarTabla(this.personasEnTabla);
+		this.pnlEliminarPersonas.llenarTabla(this.personasEnTabla);
 	
 	}
 	
