@@ -1,5 +1,6 @@
 package presentacion.controlador;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -67,7 +68,17 @@ public class Controlador implements ActionListener {
 			String apellido = this.pnlModificarPersonas.getTxtApellido().getText();
 			String dni = this.pnlModificarPersonas.getTxtDni().getText();
 			Persona nuevaPersona = new Persona(dni, nombre,apellido);
-			boolean estado = pNeg.update(nuevaPersona);
+			
+			boolean estado=false;
+			if(!pNeg.isNumber(nombre)) {
+				if(!pNeg.isNumber(apellido)) {
+					if(pNeg.isNumber(dni)) { 
+						estado = pNeg.update(nuevaPersona);
+						}
+					else{ this.pnlIngresoPersonas.mostrarMensaje("Por favor, ingrese numeros en el campo DNI");}
+				}else{ this.pnlIngresoPersonas.mostrarMensaje("Por favor, ingrese letras en el campo apellido");}
+			}else{ this.pnlIngresoPersonas.mostrarMensaje("Por favor, ingrese letras en el campo nombre");}
+
 			String mensaje;
 			if(estado==true)
 			{
@@ -134,7 +145,15 @@ public class Controlador implements ActionListener {
 		String dni = this.pnlIngresoPersonas.getTxtDni().getText();
 		Persona nuevaPersona = new Persona(dni, nombre,apellido);
 		
-		boolean estado = pNeg.insert(nuevaPersona);
+		boolean estado=false;
+		if(!pNeg.isNumber(nombre)) {
+			if(!pNeg.isNumber(apellido)) {
+				if(pNeg.isNumber(dni)) {
+					estado = pNeg.insert(nuevaPersona);					
+				}else { this.pnlIngresoPersonas.mostrarMensaje("Por favor, ingrese numeros en el campo DNI");}
+			}else{ this.pnlIngresoPersonas.mostrarMensaje("Por favor, ingrese letras en el campo apellido");}
+		} else{ this.pnlIngresoPersonas.mostrarMensaje("Por favor, ingrese letras en el campo nombre");}
+
 		String mensaje;
 		if(estado==true)
 		{
@@ -146,9 +165,9 @@ public class Controlador implements ActionListener {
 		else
 			mensaje="Persona no agregada, complete todos los campos";
 		
+		
 		this.pnlIngresoPersonas.mostrarMensaje(mensaje);
-	
-	
+		
 	}
 
 

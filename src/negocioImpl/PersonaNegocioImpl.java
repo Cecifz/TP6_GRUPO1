@@ -6,6 +6,7 @@ import dao.PersonaDao;
 import daoImpl.PersonaDaoImpl;
 import entidad.Persona;
 import negocio.PersonaNegocio;
+import presentacion.vista.PanelAgregarPersonas;
 
 public class PersonaNegocioImpl implements PersonaNegocio{
 
@@ -28,11 +29,11 @@ PersonaDao pdao = new PersonaDaoImpl();
 		boolean estado=false;
 		if(persona_a_modificar.getNombre().trim().length()>0 && persona_a_modificar.getDni().trim().length()>0  && persona_a_modificar.getApellido().trim().length()>0)
 		{
-			
 			estado=pdao.update(persona_a_modificar);
 		}
 		return estado;
 	}
+	
 	@Override
 	public boolean delete(Persona persona_a_eliminar) {
 		boolean estado=false;
@@ -56,6 +57,18 @@ PersonaDao pdao = new PersonaDaoImpl();
 		lPersona = pdao.readAll();
 		return lPersona;
 	}
+	
+	public boolean isNumber(String cadena) {
+		boolean isNumber = true;
+		
+		for (int i = 0; i < cadena.length(); i++) {
+            if (!Character.isDigit(cadena.charAt(i))) {
+                isNumber = false;
+            }
+        }
+		return isNumber;
+	}
+	
 
 }
 
