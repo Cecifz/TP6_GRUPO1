@@ -44,6 +44,7 @@ public class Controlador implements ActionListener {
 		 this.pnlIngresoPersonas.getBtnAgregar().addActionListener(a->EventoClickBoton_AgregarPesona_PanelAgregarPersonas(a));
 		
 		//Eventos PanelEliminarPersonas
+		 this.pnlEliminarPersonas.getBtnEliminar().addActionListener(a->EventoClickBoton_EliminarPersona_PanelEliminarPersonas(a));
 		///Eventos Modificar Personas
 		 this.pnlModificarPersonas.getBtnModificar().addActionListener(a->EventoClickBoton_ModificarPesona_PanelModificarPersonas(a));
 		}
@@ -118,8 +119,19 @@ public class Controlador implements ActionListener {
 	
 	
 	}
-
-
+	//EventoClickBoton eliminar persona en PanelEliminarPersona
+	private void EventoClickBoton_EliminarPersona_PanelEliminarPersonas(ActionEvent a) {
+		boolean estado=false;
+		String cadena []= this.pnlEliminarPersonas.getList().getSelectedValue().toString().split("-");
+		Persona personaEliminada = new Persona(cadena[1].trim(),cadena[2].trim(),cadena[0].trim());
+		estado = pNeg.delete(personaEliminada);
+		if(estado==true)
+		{
+			String mensaje="Persona eliminada con exito";
+			this.pnlIngresoPersonas.mostrarMensaje(mensaje);
+		}
+		this.refrescarTabla();
+	}
 	
 	private void refrescarTabla()
 	{
