@@ -39,16 +39,16 @@ public class PanelListarPersonas extends JPanel {
 		
 
 	
-		this.setBounds(100, 100, 514, 455);
+		this.setBounds(100, 100, 535, 314);
 		this.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 444, 227);
+		panel.setBounds(10, 11, 515, 278);
 		this.add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(15, 30, 383, 126);
+		spPersonas.setBounds(15, 30, 490, 237);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
